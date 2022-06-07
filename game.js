@@ -13,7 +13,20 @@ function computerPlay(){
 }
 
 function playRound(playerChoice, computerChoice){
-    if(playerChoice == "Rock"){
-        
+    playerChoiceLower = playerChoice.toLowerCase();
+    computerChoiceLower = computerChoice.toLowerCase();
+
+    if(playerChoiceLower == "rock" && computerChoiceLower == "scissors" ||
+    playerChoiceLower == "scissors" && computerChoiceLower == "paper" ||
+    playerChoiceLower == "paper" && computerChoiceLower == "rock"){
+        return `You win! ${playerChoice} beats ${computerChoice}`;
+    }
+    else if(computerChoiceLower == "rock" && playerChoiceLower == "scissors" ||
+    computerChoiceLower == "scissors" && playerChoiceLower == "paper" ||
+    computerChoiceLower == "paper" && playerChoiceLower == "rock"){
+        return `You Lose! ${computerChoice} beats ${playerChoice}`;
+    }
+    else{
+        return "Tie game!";
     }
 }
