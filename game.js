@@ -31,6 +31,53 @@ function playRound(playerChoice, computerChoice){
     }
 }
 
+function playGame(playerChoice) {
+    let result = playRound(playerChoice, computerPlay());
+
+    if(result.includes("Win")){
+        let playerScore = document.getElementById("player-score");
+        let score = parseInt(playerScore.textContent);
+        score++;
+        playerScore.textContent = score;
+
+        if(score == 5){
+            alert("Congratulations, you win!");
+            reset();
+        }
+    }
+    else if(result.includes("Lose")){
+        let computerScore = document.getElementById("computer-score");
+        let score = parseInt(computerScore.textContent);
+        score++;
+        computerScore.textContent = score;
+
+        if(score == 5){
+            alert("Sorry, you lost!");
+            reset();
+        }
+    }
+    else{
+        let draw = document.getElementById("draw");
+        let score = parseInt(draw.textContent);
+        score++;
+        draw.textContent = score;
+    }
+}
+
+function reset(){
+    let scores = document.querySelectorAll(".score-text");
+    scores.forEach(score => {
+        score.textContent = 0;
+    })
+}
+
+let buttons = document.querySelectorAll("button");
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        playGame(button.textContent);
+    })
+})
+
 // function game(){
 //     const MAX_ROUNDS = 5;
 //     let playerWins = 0;
